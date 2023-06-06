@@ -9,6 +9,16 @@ async function index(req, res) {
   }
 }
 
+async function create(req, res) {
+  try {
+    const foodItem = await FoodItem.create(req.body);
+    res.json(foodItem);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 module.exports = {
   index,
+  create,
 };
