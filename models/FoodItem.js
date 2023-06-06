@@ -3,12 +3,10 @@ const Schema = mongoose.Schema;
 
 const foodItemSchema = new Schema({
   name: { type: String, required: true },
-  category: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Category',
-    },
-  ],
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+  },
   quantity: Number,
 });
 
