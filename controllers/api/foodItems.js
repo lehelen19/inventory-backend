@@ -1,3 +1,4 @@
+const axios = require('axios');
 const Category = require('../../models/Category');
 
 async function create(req, res) {
@@ -17,6 +18,27 @@ async function show(req, res) {
     const foodItemDetails = category.foodItems.find(
       (item) => item._id.toString() === req.params.id
     );
+
+    // Make API request to retrieve nutrition data
+    const URL = `https://trackapi.nutritionix.com/v2/natural/nutrients`;
+    const apiResponse = await axios({
+      method: 'post',
+      url: URL,
+      headers: {
+        'x-app-id': process.env.APP_ID,
+        'x-app-key': process.env.API_KEY,
+      },
+      data: {
+        query: foodItemDetails.name,
+      },
+    });
+
+    if (apiResponse.status === 200) {
+      console.log(apiResponse.data);
+      const fullDetails = { ...foodItemDetails, ...apiResponse.data.foods[0] };
+      res.json(fullDetails);
+      return;
+    }
     res.json(foodItemDetails);
   } catch (err) {
     res.status(400).json(err);
