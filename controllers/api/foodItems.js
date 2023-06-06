@@ -1,24 +1,16 @@
-const FoodItem = require('../../models/FoodItem');
-
-async function index(req, res) {
-  try {
-    const foodItems = await FoodItem.find({});
-    res.json(foodItems);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-}
+const Category = require('../../models/Category');
 
 async function create(req, res) {
   try {
-    const foodItem = await FoodItem.create(req.body);
-    res.json(foodItem);
+    const category = await Category.findById(req.params.id);
+    category.foodItems.push(req.body);
+    await category.save();
+    res.json(category);
   } catch (err) {
     res.status(400).json(err);
   }
 }
 
 module.exports = {
-  index,
   create,
 };
