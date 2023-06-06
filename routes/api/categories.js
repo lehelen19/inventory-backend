@@ -4,7 +4,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 const router = express.Router();
 
-router.get('/', categoriesController.create);
+router.get('/', categoriesController.index);
 
 router.post('/', categoriesController.create);
 
