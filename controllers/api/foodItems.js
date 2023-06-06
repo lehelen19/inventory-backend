@@ -34,8 +34,10 @@ async function show(req, res) {
     });
 
     if (apiResponse.status === 200) {
-      console.log(apiResponse.data);
-      const fullDetails = { ...foodItemDetails, ...apiResponse.data.foods[0] };
+      const fullDetails = {
+        ...foodItemDetails.toObject(),
+        ...apiResponse.data.foods[0],
+      };
       res.json(fullDetails);
       return;
     }
