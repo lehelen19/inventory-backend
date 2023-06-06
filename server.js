@@ -12,6 +12,7 @@ app.use(express.json());
 // CHECK TOKEN HERE
 
 // Add routes here
+app.use('/api/users', require('./routes/api/users'));
 app.use('/api/items', require('./routes/api/foodItems'));
 app.use('/api/categories', require('./routes/api/categories'));
 
