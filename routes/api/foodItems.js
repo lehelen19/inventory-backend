@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.post('/categories/:id/items', foodItemsController.create);
 
+router.get('/items/:id', foodItemsController.show);
+
 module.exports = router;
