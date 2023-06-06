@@ -13,6 +13,7 @@ app.use(express.json());
 
 // Add routes here
 app.use('/api/items', require('./routes/api/foodItems'));
+app.use('/api/categories', require('./routes/api/categories'));
 
 const port = process.env.PORT || 3001;
 
