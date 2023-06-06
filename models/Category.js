@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const foodItemSchema = new Schema(
   {
     name: { type: String, required: true },
-    quantity: Number,
+    quantity: { type: Number, default: 0 },
   },
   {
     timestamps: true,
