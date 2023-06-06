@@ -12,6 +12,7 @@ app.use(express.json());
 // CHECK TOKEN HERE
 
 // Add routes here
+app.use('/api/items', require('./routes/api/foodItems'));
 
 const port = process.env.PORT || 3001;
 
