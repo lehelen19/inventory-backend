@@ -4,8 +4,6 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 const router = express.Router();
 
-router.get('/', foodItemsController.index);
-
 router.post('/', foodItemsController.create);
 
 module.exports = router;
