@@ -11,6 +11,19 @@ async function create(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const category = await Category.findOne({ 'foodItems._id': req.params.id });
+    const foodItemDetails = category.foodItems.find(
+      (item) => item._id.toString() === req.params.id
+    );
+    res.json(foodItemDetails);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 module.exports = {
   create,
+  show,
 };
