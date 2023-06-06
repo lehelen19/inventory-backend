@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', categoriesController.index);
 
+router.get('/:id', categoriesController.show);
+
 router.post('/', categoriesController.create);
 
 module.exports = router;

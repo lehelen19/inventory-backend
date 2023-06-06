@@ -18,7 +18,17 @@ async function create(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const category = await Category.find(req.params.id);
+    res.json(category);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 module.exports = {
   index,
   create,
+  show,
 };
