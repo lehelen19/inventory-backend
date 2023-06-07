@@ -27,8 +27,18 @@ async function show(req, res) {
   }
 }
 
+async function deleteCategory(req, res) {
+  try {
+    await Category.findByIdAndDelete(req.params.id);
+    res.json('Success - deleted category');
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 module.exports = {
   index,
   create,
   show,
+  delete: deleteCategory,
 };
