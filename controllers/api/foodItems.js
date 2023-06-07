@@ -50,9 +50,8 @@ async function show(req, res) {
 async function deleteItem(req, res) {
   try {
     const category = await Category.findOne({ 'foodItems._id': req.params.id });
-    const index = category.foodItems.indexOf(req.params.id);
-    console.log('cat', category, 'ind', index);
-    if (index > -1) category.splice(index, 1);
+    category.foodItems.remove(req.params.id);
+    await category.save();
     res.json(category);
   } catch (err) {
     res.status(400).json(err);
