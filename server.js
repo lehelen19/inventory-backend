@@ -9,9 +9,8 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
-// CHECK TOKEN HERE
+app.use(require('./config/checkToken'));
 
-// Add routes here
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/categories', require('./routes/api/categories'));
 app.use('/api/', require('./routes/api/foodItems'));
