@@ -10,4 +10,6 @@ router.get('/:id', categoriesController.show);
 
 router.post('/', categoriesController.create);
 
+router.delete('/:id', categoriesController.delete);
+
 module.exports = router;
