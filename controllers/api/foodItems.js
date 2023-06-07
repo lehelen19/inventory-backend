@@ -58,6 +58,7 @@ async function update(req, res) {
       category.foodItems[index].quantity = req.body.quantity;
       await category.save();
       res.json(category);
+      return;
     }
     throw new Error('Invalid id');
   } catch (err) {
