@@ -47,6 +47,18 @@ async function show(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const category = await Category.findOne({ 'foodItems._id': req.params.id });
+    const item = category.foodItems.find(
+      (itemObj) => itemObj._id === req.params.id
+    );
+    console.log(item);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 async function deleteItem(req, res) {
   try {
     const category = await Category.findOne({ 'foodItems._id': req.params.id });
@@ -61,5 +73,6 @@ async function deleteItem(req, res) {
 module.exports = {
   create,
   show,
+  update,
   delete: deleteItem,
 };
