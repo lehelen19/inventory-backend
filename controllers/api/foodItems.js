@@ -50,10 +50,16 @@ async function show(req, res) {
 async function update(req, res) {
   try {
     const category = await Category.findOne({ 'foodItems._id': req.params.id });
-    const item = category.foodItems.find(
-      (itemObj) => itemObj._id === req.params.id
+    const index = category.foodItems.findIndex(
+      (itemObj) => itemObj._id.toString() === req.params.id
     );
-    console.log(item);
+    if (index > -1) {
+      category.foodItems[index].name = req.body.name;
+      category.foodItems[index].quantity = req.body.quantity;
+      await category.save();
+      res.json(category);
+    }
+    throw new Error('Invalid id');
   } catch (err) {
     res.status(400).json(err);
   }
