@@ -27,6 +27,17 @@ async function show(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const category = await Category.findById(req.params.id);
+    category.name = req.body.name;
+    await category.save();
+    res.json(category);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 async function deleteCategory(req, res) {
   try {
     await Category.findByIdAndDelete(req.params.id);
@@ -40,5 +51,6 @@ module.exports = {
   index,
   create,
   show,
+  update,
   delete: deleteCategory,
 };
