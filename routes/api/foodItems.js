@@ -8,4 +8,6 @@ router.post('/categories/:id/items', foodItemsController.create);
 
 router.get('/items/:id', foodItemsController.show);
 
+router.delete('/items/:id', foodItemsController.delete);
+
 module.exports = router;
